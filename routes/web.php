@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/admin/login', 'Admin\LoginController@login'); namespace('Admin')->
+
+//后台路由
+Route::namespace('Admin')->prefix('admin')->group(function (){
+    Route::match(['get', 'post'], 'login', 'LoginController@login');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
