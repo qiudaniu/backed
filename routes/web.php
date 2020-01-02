@@ -15,7 +15,13 @@
 
 //后台路由
 Route::namespace('Admin')->prefix('admin')->group(function (){
-    Route::match(['get', 'post'], 'login', 'LoginController@login');
+    Route::group(['middleware'=>'auth.admin'], function (){
+        Route::get('/', 'IndexController@index');
+    });
+
+    Route::get('login', 'LoginController@showLoginForm')->name('admin.login');
+    Route::post('login', 'LoginController@login');
+    Route::post('logout', 'LoginController@logout');
 });
 
 Auth::routes();

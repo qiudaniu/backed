@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminsTableSeeder extends Seeder
 {
@@ -11,6 +12,9 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Admin', 1)->create();
+        DB::table('admins')->insert([
+            'account' => 'admin',
+            'password' => bcrypt('123456789'),
+        ]);
     }
 }
