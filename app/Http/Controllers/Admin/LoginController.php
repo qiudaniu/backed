@@ -12,7 +12,7 @@ class LoginController extends Controller
         AuthenticatesLogout::logout insteadof AuthenticatesUsers;
     }
 
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/login';
 
     public function __construct()
     {
