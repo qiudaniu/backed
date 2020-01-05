@@ -7,16 +7,16 @@
                 <h3 class="h6 text-uppercase mb-0">新增记录</h3>
             </div>
             <div class="card-body">
-                <form class="form-horizontal" method="post" action="{{ route('price.store') }}">
+                <form class="form-horizontal" method="post" action="{{ route('weight.store') }}">
                     @csrf
                     <div class="form-group row">
-                        <label for="min" class="col-md-2 form-control-label"><span style="font-size: 20px">国家</span></label>
+                        <label for="min" class="col-md-2 form-control-label"><span style="font-size: 20px">重量小值</span></label>
                         <div class="col-md-9">
                             <input id="min" type="text" name="min" class="form-control">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="max" class="col-md-2 form-control-label"><span style="font-size: 20px">线路</span></label>
+                        <label for="max" class="col-md-2 form-control-label"><span style="font-size: 20px">重量大值</span></label>
                         <div class="col-md-9">
                             <input id="max" type="text" name="max" class="form-control">
                         </div>
