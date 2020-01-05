@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="author" content="Kodinger">
     <title>My Login Page &mdash; Bootstrap 4 Login Page Snippet</title>
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/my-login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('/public/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/css/my-login.css') }}">
 </head>
 <body class="my-login-page">
 <section class="h-100">
@@ -13,7 +13,7 @@
         <div class="row justify-content-md-center h-100">
             <div class="card-wrapper">
                 <div class="brand">
-                    <img src="{{ URL::asset('img/logo.jpg') }}">
+                    <img src="{{ URL::asset('public/img/logo.jpg') }}">
                 </div>
                 <div class="card fat">
                     <div class="card-body">
@@ -53,8 +53,8 @@
     </div>
 </section>
 
-<script src="{{ URL::asset('js/jquery.min.js') }}"></script>
-<script src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('js/my-login.js') }}"></script>
+<script src="{{ URL::asset('public/js/jquery.min.js') }}"></script>
+<script src="{{ URL::asset('public/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('public/js/my-login.js') }}"></script>
 </body>
 </html>

@@ -17,6 +17,11 @@
 Route::namespace('Admin')->prefix('admin')->group(function (){
     Route::group(['middleware'=>'auth.admin'], function (){
         Route::get('/', 'IndexController@index')->name('admin');
+        Route::resources([
+            'nation' => 'NationController',
+            'line' => 'LineController',
+            'weight' => 'WeightController',
+        ]);
     });
 
     Route::get('login', 'LoginController@showLoginForm')->name('admin.login');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Nation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,8 +15,9 @@ class NationController extends Controller
      */
     public function index()
     {
+        $nations = Nation::all();
         # 列表页
-        return view('admin.nation.index');
+        return view('admin.nation.index', ['nations' => $nations]);
     }
 
     /**
@@ -25,7 +27,7 @@ class NationController extends Controller
      */
     public function create()
     {
-        # 新增`国家`记录
+        # 新增`国家`记录 表单
         return view('admin.nation.create');
     }
 
@@ -37,9 +39,20 @@ class NationController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'bail|required',
+            'code' => 'required',
+        ]);
         # 保存`国家`记录
-        $nation = $request->input('nation');
-        dd($nation);
+        $nation = new Nation();
+        $nation->name = $request->name;
+        $nation->code = $request->code;
+        $return = $nation->save();
+        if ($return){
+            return redirect('admin/nation')->with('message', '保存成功');
+        }else{
+            return back()->with('message', '保存失败');
+        }
     }
 
     /**
@@ -50,7 +63,8 @@ class NationController extends Controller
      */
     public function show($id)
     {
-        return view('admin.nation.show');
+        $nation = Nation::findOrFail($id);
+        return view('admin.nation.show', ['nation' => $nation]);
     }
 
     /**
@@ -61,7 +75,8 @@ class NationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nation = Nation::findOrFail($id);
+        return view('admin.nation.edit', ['nation' => $nation]);
     }
 
     /**
@@ -73,7 +88,16 @@ class NationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        # 更新数据
+        $nation = Nation::find($id);
+        if ($request->name) $nation->name = $request->name;
+        if ($request->code) $nation->code = $request->code;
+        $return = $nation->save();
+        if ($return){
+            return redirect('admin/nation');
+        }else{
+            return back()->with('message_change', '修改失败');
+        }
     }
 
     /**
@@ -84,6 +108,11 @@ class NationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = Nation::destroy($id);
+        if ($id){
+            return json_encode(['code'=>200, 'message'=>'删除成功']);
+        }else{
+            return json_encode(['code'=>201, 'message'=>'删除失败']);
+        }
     }
 }
