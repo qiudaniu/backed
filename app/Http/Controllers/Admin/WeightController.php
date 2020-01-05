@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Weight;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class WeightController extends Controller
      */
     public function index()
     {
-        return view('admin.weight.index');
+        $weights = Weight::all();
+        return view('admin.weight.index', ['weights' => $weights]);
     }
 
     /**
@@ -24,7 +26,7 @@ class WeightController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.weight.create');
     }
 
     /**
@@ -35,7 +37,20 @@ class WeightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'min' => 'bail|required|numeric',
+            'max' => 'required|numeric',
+        ]);
+        # 保存`国家`记录
+        $nation = new Weight();
+        $nation->min = $request->min;
+        $nation->max = $request->max;
+        $return = $nation->save();
+        if ($return){
+            return redirect('admin/weight')->with('message', '保存成功');
+        }else{
+            return back()->with('message', '保存失败');
+        }
     }
 
     /**
@@ -57,7 +72,8 @@ class WeightController extends Controller
      */
     public function edit($id)
     {
-        //
+        $weight = Weight::findOrFail($id);
+        return view('admin.weight.edit', ['weight' => $weight]);
     }
 
     /**
@@ -69,7 +85,16 @@ class WeightController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        # 更新数据
+        $weight = Weight::find($id);
+        if ($request->min) $weight->min = $request->min;
+        if ($request->max) $weight->max = $request->max;
+        $return = $weight->save();
+        if ($return){
+            return redirect('admin/weight');
+        }else{
+            return back()->with('message_change', '修改失败');
+        }
     }
 
     /**
@@ -80,6 +105,11 @@ class WeightController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = Weight::destroy($id);
+        if ($id){
+            return json_encode(['code'=>200, 'message'=>'删除成功']);
+        }else{
+            return json_encode(['code'=>201, 'message'=>'删除失败']);
+        }
     }
 }

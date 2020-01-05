@@ -21,6 +21,7 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
             'nation' => 'NationController',
             'line' => 'LineController',
             'weight' => 'WeightController',
+            'price' => 'PriceController',
         ]);
     });
 

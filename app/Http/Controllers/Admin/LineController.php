@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Line;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class LineController extends Controller
      */
     public function index()
     {
-        return view('admin.line.index');
+        $lines = Line::all();
+        return view('admin.line.index', ['lines' => $lines]);
     }
 
     /**
@@ -24,7 +26,7 @@ class LineController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.line.create');
     }
 
     /**
@@ -35,7 +37,18 @@ class LineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        #保存`线路`记录
+        $line = new Line();
+        $line->name = $request->name;
+        $return = $line->save();
+        if ($return){
+            return redirect('admin/line')->with('message', '保存成功');
+        }else{
+            return back()->with('message', '保存失败');
+        }
     }
 
     /**
@@ -57,7 +70,8 @@ class LineController extends Controller
      */
     public function edit($id)
     {
-        //
+        $line = Line::findOrFail($id);
+        return view('admin.line.edit', ['line' => $line]);
     }
 
     /**
@@ -69,7 +83,14 @@ class LineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $line = Line::find($id);
+        if ($request->name) $line->name = $request->name;
+        $return = $line->save();
+        if ($return){
+            return redirect('admin/line');
+        }else{
+            return back()->with('message_change', '修改失败');
+        }
     }
 
     /**
@@ -80,6 +101,11 @@ class LineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = Line::destroy($id);
+        if ($id){
+            return json_encode(['code'=>200, 'message'=>'删除成功']);
+        }else{
+            return json_encode(['code'=>201, 'message'=>'删除失败']);
+        }
     }
 }

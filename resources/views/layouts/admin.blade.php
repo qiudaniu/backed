@@ -82,12 +82,48 @@
                     </ul>
                 </div>
             </li>
+            <li class="sidebar-list-item"><a href="#" data-toggle="collapse" data-target="#price" aria-expanded="false" aria-controls="pages" class="sidebar-link text-muted"><i class="o-wireframe-1 mr-3 text-gray"></i><span>单价</span></a>
+                <div id="price" class="collapse">
+                    <ul class="sidebar-menu list-unstyled border-left border-primary border-thick">
+                        <li class="sidebar-list-item"><a href="{{ url('admin/price') }}" class="sidebar-link text-muted pl-lg-5">单价列表</a></li>
+                        <li class="sidebar-list-item"><a href="{{ url('admin/price/create') }}" class="sidebar-link text-muted pl-lg-5">新增单价</a></li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
     <div class="page-holder w-100 d-flex flex-wrap">
         <div class="container-fluid px-xl-5">
             @yield('content')
         </div>
+    </div>
+    <!-- 模态框   信息删除确认 -->
+    <div class="modal fade" id="delcfmOverhaul">
+        <div class="modal-dialog">
+            <div class="modal-content message_align">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 隐藏需要删除的id -->
+                    <input type="hidden" id="deleteHaulId" />
+                    <p>您确认要删除该条信息吗？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary"
+                            id="deleteHaulBtn">确认</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+
     </div>
 </div>
 
