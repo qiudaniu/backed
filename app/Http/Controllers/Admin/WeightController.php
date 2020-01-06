@@ -38,8 +38,8 @@ class WeightController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'min' => 'bail|required',
-            'max' => 'required',
+            'min' => 'bail|required|numeric',
+            'max' => 'required|numeric',
         ]);
         # 保存`国家`记录
         $nation = new Weight();

@@ -6,14 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>运费查询</title>
-    <link rel="stylesheet" href="css/freight.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/css/freight.css') }}" type="text/css">
 
-    <link rel="stylesheet" href="css/public.css">
-    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="{{ asset('public/css/public.css') }}css/public.css">
+    <link rel="stylesheet" href="{{ asset('public/css/swiper.min.css') }}">
 
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/dyselect.js"></script>
 </head>
 <body>
     <!--<div class="container">-->
@@ -38,6 +35,11 @@
     </div>
     <!--</div>-->
 
-    <script src="js/index.js"></script>
+
+    <script src="{{ asset('public/js/jquery-1.10.2.js') }}"></script>
+    <script src="{{ asset('public/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('public/js/dyselect.js') }}"></script>
+    <script src="{{ asset('public/js/index.js') }}"></script>
+
 </body>
 </html>
