@@ -8,7 +8,7 @@
     <title>运费查询</title>
     <link rel="stylesheet" href="{{ asset('public/css/freight.css') }}" type="text/css">
 
-    <link rel="stylesheet" href="{{ asset('public/css/public.css') }}css/public.css">
+    <link rel="stylesheet" href="{{ asset('public/css/public.css') }}">
     <link rel="stylesheet" href="{{ asset('public/css/swiper.min.css') }}">
 
 </head>
