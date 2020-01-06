@@ -30,6 +30,15 @@
                 <input name="width" type="text" class="c_i2" placeholder="宽">
                 <input name="height" type="text" class="c_i2" placeholder="高">
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <input type="submit" value="点击查询" class="c_i3">
             <div class="select_box select_box3"></div>
         </form>
