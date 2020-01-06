@@ -4,17 +4,16 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h6 class="text-uppercase mb-0">结果<span style="color: green; float: right;">快件类型---{{ $data['type'] }}</span></h6>
+                <h6 class="text-uppercase mb-0"><span style="color: green;">快件类型---{{ $data['type'] }}</span><span style="color: #880000; float: right">结果</span></h6>
+                <h6 class="text-uppercase mb-0"><span style="color: green;">国家---{{ $data['nation_name'] }} || 国家代码---{{ $data['nation_code'] }}</span></h6>
+                <h6 class="text-uppercase mb-0"><span style="color: green;">重量区间---[ {{ $data['min'] }}, {{ $data['max'] }})</span></h6>
+                <h6 class="text-uppercase mb-0"><span style="color: green;">包裹重量---{{ $data['weight'] }}</span></h6>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-sm card-text">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>国家</th>
-                        <th>国家代码</th>
-                        <th>重量区间</th>
-                        <th>快件重量</th>
                         <th>线路</th>
                         <th>单价</th>
                         <th>总价</th>
@@ -24,10 +23,6 @@
                     @foreach($data['prices'] as $key=>$price)
                         <tr>
                             <th scope="row">{{ $key+1 }}</th>
-                            <td>{{ $price->nation_name }}</td>
-                            <td>{{ $price->nation_code }}</td>
-                            <td>[{{ $price->min }},{{ $price->max }})</td>
-                            <td>{{ $price->weight }}</td>
                             <td>{{ $price->line_name }}</td>
                             <td>{{ $price->price }}</td>
                             <td>{{ $price->price_all }}</td>

@@ -16,7 +16,7 @@
     <!--<div class="container">-->
     <h1 class="c_h1">运费查询</h1>
     <div class="c_d1">
-        <form action="{{ url('/freight') }}" method="post" class="c_f1">
+        <form action="{{ url('freight') }}" method="post" class="c_f1">
             @csrf
             <label for="addr">1.请选择您的快件目的地</label>
             <input id="addr" name="addr" type="text" class="c_i1" placeholder="输入国家或二字编码，比如美国或US">
