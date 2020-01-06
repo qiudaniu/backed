@@ -33,3 +33,4 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
 Auth::routes();
 
 Route::get('/freight', 'FreightController@index');
+Route::post('/freight', 'FreightController@store');
