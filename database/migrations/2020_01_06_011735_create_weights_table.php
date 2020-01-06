@@ -15,8 +15,8 @@ class CreateWeightsTable extends Migration
     {
         Schema::create('weights', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('min');
-            $table->integer('max');
+            $table->string('min');
+            $table->string('max');
             $table->timestamps();
         });
     }
