@@ -39,6 +39,7 @@
                     </ul>
                 </div>
             @endif
+            <li>{{ $result }}</li>
             <input type="submit" value="点击查询" class="c_i3">
             <div class="select_box select_box3"></div>
         </form>
