@@ -22,6 +22,18 @@
                             <input id="max" type="text" name="max" class="form-control" value="{{ $weight->max }}">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="left" class="col-md-2 form-control-label"><span style="font-size: 20px">左区间</span></label>
+                        <div class="col-md-9">
+                            <input id="left" type="text" name="left" class="form-control" value="{{ $weight->left }}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="right" class="col-md-2 form-control-label"><span style="font-size: 20px">右区间</span></label>
+                        <div class="col-md-9">
+                            <input id="right" type="text" name="right" class="form-control" value="{{ $weight->right }}">
+                        </div>
+                    </div>
                     @if(Session::has('message_change'))
                         <div class="alert alert-info"> {{Session::get('message_change')}}
                         </div>

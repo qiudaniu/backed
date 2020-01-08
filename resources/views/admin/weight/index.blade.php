@@ -13,6 +13,8 @@
                         <th>#</th>
                         <th>重量小值</th>
                         <th>重量大值</th>
+                        <th>左区间</th>
+                        <th>右区间</th>
                         <th>添加时间</th>
                         <th>更新时间</th>
                         <th>操作</th>
@@ -24,6 +26,8 @@
                             <th scope="row"><a href="{{ url("admin/weight/{$weight->id}/edit") }}">{{ $key+1 }}</a></th>
                             <td>{{ $weight->min }}</td>
                             <td>{{ $weight->max }}</td>
+                            <td>{{ $weight->left }}</td>
+                            <td>{{ $weight->right }}</td>
                             <td>{{ $weight->created_at }}</td>
                             <td>{{ $weight->updated_at }}</td>
                             <td>
@@ -34,7 +38,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
+            </div>
         </div>
     </div>
 @endsection

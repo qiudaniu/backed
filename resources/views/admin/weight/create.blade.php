@@ -21,6 +21,18 @@
                             <input id="max" type="text" name="max" class="form-control">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="left" class="col-md-2 form-control-label"><span style="font-size: 20px">左区间</span></label>
+                        <div class="col-md-9">
+                            <input id="left" type="text" name="left" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="right" class="col-md-2 form-control-label"><span style="font-size: 20px">右区间</span></label>
+                        <div class="col-md-9">
+                            <input id="right" type="text" name="right" class="form-control">
+                        </div>
+                    </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
