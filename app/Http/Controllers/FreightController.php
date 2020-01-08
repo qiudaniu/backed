@@ -40,8 +40,11 @@ class FreightController extends Controller
             ->orWhere('code', '=', $request->addr)
             ->get();
         # 数据库读出该公斤段的id
-        $weight = DB::table('weights')->where('min', '<=', $vol)
-            ->where('max', '>', $vol)
+        $weight = DB::table('weights')
+            ->whereRaw("min<=$vol and max>$vol and left=1 and right=0")
+            ->orWhereRaw("min<$vol and max>$vol and left=0 and right=0")
+            ->orWhereRaw("min<=$vol and max>=$vol and left=1 and right=1")
+            ->orWhereRaw("min<$vol and max>=$vol and left=0 and right=1")
             ->get();
 
         if (!$nation->isEmpty() && !$weight->isEmpty()){
