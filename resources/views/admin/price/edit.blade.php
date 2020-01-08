@@ -49,6 +49,12 @@
                             <input id="price" type="text" name="price" class="form-control" value="{{ $price[0]->price }}">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="remark" class="col-md-2 form-control-label"><span style="font-size: 20px">备注</span></label>
+                        <div class="col-md-9">
+                            <textarea  id="remark" type="text" name="remark" style="color: red;" class="form-control" rows="3">{{ $price[0]->remark }}</textarea>
+                        </div>
+                    </div>
                     @if(Session::has('message_change'))
                         <div class="alert alert-info"> {{Session::get('message_change')}}
                         </div>

@@ -23,7 +23,7 @@ class PriceController extends Controller
             ->leftJoin('nations', 'prices.nation_id', '=', 'nations.id')
             ->leftJoin('lines', 'prices.line_id', '=', 'lines.id')
             ->leftJoin('weights', 'prices.weight_id', '=', 'weights.id')
-            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.created_at', 'prices.updated_at')
+            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.remark', 'prices.created_at', 'prices.updated_at')
             ->get();
         return view('admin.price.index', ['prices' => $prices]);
     }
@@ -65,6 +65,7 @@ class PriceController extends Controller
         $price->line_id = $request->line_id;
         $price->weight_id = $request->weight_id;
         $price->price = $request->price;
+        $price->remark = $request->remark;
         $return = $price->save();
         if ($return){
             return redirect('admin/price')->with('message', '保存成功');
@@ -96,7 +97,7 @@ class PriceController extends Controller
             ->leftJoin('nations', 'prices.nation_id', '=', 'nations.id')
             ->leftJoin('lines', 'prices.line_id', '=', 'lines.id')
             ->leftJoin('weights', 'prices.weight_id', '=', 'weights.id')
-            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.created_at', 'prices.updated_at')
+            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.remark', 'prices.created_at', 'prices.updated_at')
             ->where('prices.id', '=', $id)
             ->get();
         $nations = Nation::all();
@@ -125,6 +126,7 @@ class PriceController extends Controller
         if ($request->line_id) $price->line_id = $request->line_id;
         if ($request->weight_id) $price->weight_id = $request->weight_id;
         if ($request->price) $price->price = $request->price;
+        if ($request->remark) $price->remark = $request->remark;
         $return = $price->save();
         if ($return){
             return redirect('admin/price');

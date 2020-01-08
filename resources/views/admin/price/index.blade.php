@@ -10,14 +10,14 @@
                 <table class="table table-striped table-sm card-text">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>国家</th>
-                        <th>线路</th>
-                        <th>公斤段</th>
-                        <th>单价</th>
-                        <th>添加时间</th>
-                        <th>更新时间</th>
-                        <th>操作</th>
+                        <th width="10%">#</th>
+                        <th width="10%">国家</th>
+                        <th width="20%">线路</th>
+                        <th width="10%">公斤段</th>
+                        <th width="10%">单价</th>
+                        <th width="15%">添加时间</th>
+                        <th width="15%">更新时间</th>
+                        <th width="10%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,7 +40,11 @@
                             <td>
                                 <a href="javascript:void(0)" onclick="showEditModal({{ $price->id }}, 'price')">修改</a>
                                 <a href="javascript:void(0)" onclick="showDeleteModal({{ $price->id }})">删除</a>
+                                <a href="javascript:void(0)" onclick="showRemark()">备注</a>
                             </td>
+                        </tr>
+                        <tr id="remark" style="display: none">
+                            <td colspan="8">{{ $price->remark }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -73,5 +77,9 @@
                     });
                 });
 
+                function showRemark(){
+                    alert(1);
+                    $("remark").css("display", "block");
+                }
             </script>
     @endsection
