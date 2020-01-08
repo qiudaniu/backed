@@ -97,8 +97,8 @@ class WeightController extends Controller
         $weight = Weight::find($id);
         if ($request->min) $weight->min = $request->min;
         if ($request->max) $weight->max = $request->max;
-        if ($request->left_section) $weight->max = $request->left_section;
-        if ($request->right_section) $weight->max = $request->right_section;
+        if ($request->left_section) $weight->left_section = $request->left_section;
+        if ($request->right_section) $weight->right_section = $request->right_section;
         $return = $weight->save();
         if ($return){
             return redirect('admin/weight');

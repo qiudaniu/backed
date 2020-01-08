@@ -26,8 +26,16 @@
                             <th scope="row"><a href="{{ url("admin/weight/{$weight->id}/edit") }}">{{ $key+1 }}</a></th>
                             <td>{{ $weight->min }}</td>
                             <td>{{ $weight->max }}</td>
-                            <td>{{ $weight->left }}</td>
-                            <td>{{ $weight->right }}</td>
+                            <td>
+                                @if($weight->left_section  == 1) 开区间
+                                    @else 闭区间
+                                    @endif
+                            </td>
+                            <td>
+                                @if($weight->right_section  == 1) 开区间
+                                @else 闭区间
+                                @endif
+                            </td>
                             <td>{{ $weight->created_at }}</td>
                             <td>{{ $weight->updated_at }}</td>
                             <td>

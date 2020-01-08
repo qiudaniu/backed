@@ -22,15 +22,21 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="left" class="col-md-2 form-control-label"><span style="font-size: 20px">左区间</span></label>
-                        <div class="col-md-9">
-                            <input id="left" type="text" name="left" class="form-control">
+                        <label class="col-md-2 form-control-label">左区间</label>
+                        <div class="col-md-9 select mb-3">
+                            <select name="left_section" class="form-control">
+                                <option value="1">开区间</option>
+                                <option value="2">闭区间</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="right" class="col-md-2 form-control-label"><span style="font-size: 20px">右区间</span></label>
-                        <div class="col-md-9">
-                            <input id="right" type="text" name="right" class="form-control">
+                        <label class="col-md-2 form-control-label">右区间</label>
+                        <div class="col-md-9 select mb-3">
+                            <select name="right_section" class="form-control">
+                                <option value="1">开区间</option>
+                                <option value="2">闭区间</option>
+                            </select>
                         </div>
                     </div>
                     @if ($errors->any())

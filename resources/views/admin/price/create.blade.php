@@ -34,7 +34,15 @@
                         <div class="col-md-9 select mb-3">
                             <select name="weight_id" class="form-control">
                                 @foreach($weights as $weight)
-                                    <option value="{{ $weight->id }}">{{ $weight->min }}~{{ $weight->max }}</option>
+                                    <option value="{{ $weight->id }}">
+                                        @if($weight->left_section == 2)[
+                                        @else （
+                                        @endif
+                                        {{ $weight->min }}~{{ $weight->max }}
+                                        @if($weight->right_section == 2)]
+                                        @else ）
+                                        @endif
+                                    </option>
                                 @endforeach</select>
                         </div>
                     </div>
