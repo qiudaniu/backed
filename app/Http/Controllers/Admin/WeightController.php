@@ -37,10 +37,16 @@ class WeightController extends Controller
      */
     public function store(Request $request)
     {
+        $message = [
+            'required' => '请输入完整',
+            'numeric' => '必须是数字类型',
+        ];
         $request->validate([
             'min' => 'bail|required|numeric',
             'max' => 'required|numeric',
-        ]);
+            'left' => 'required|numeric',
+            'right' => 'required|numeric',
+        ], $message);
         # 保存`国家`记录
         $nation = new Weight();
         $nation->min = $request->min;
@@ -89,6 +95,8 @@ class WeightController extends Controller
         $weight = Weight::find($id);
         if ($request->min) $weight->min = $request->min;
         if ($request->max) $weight->max = $request->max;
+        if ($request->left) $weight->max = $request->left;
+        if ($request->right) $weight->max = $request->right;
         $return = $weight->save();
         if ($return){
             return redirect('admin/weight');
