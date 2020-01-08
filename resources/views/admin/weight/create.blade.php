@@ -12,13 +12,13 @@
                     <div class="form-group row">
                         <label for="min" class="col-md-2 form-control-label"><span style="font-size: 20px">重量小值</span></label>
                         <div class="col-md-9">
-                            <input id="min" type="text" name="min" class="form-control">
+                            <input id="min" type="text" name="min" class="form-control" value="{{ old('min') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="max" class="col-md-2 form-control-label"><span style="font-size: 20px">重量大值</span></label>
                         <div class="col-md-9">
-                            <input id="max" type="text" name="max" class="form-control">
+                            <input id="max" type="text" name="max" class="form-control" value="{{ old('max') }}">
                         </div>
                     </div>
                     <div class="form-group row">

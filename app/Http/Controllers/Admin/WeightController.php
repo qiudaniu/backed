@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Weight;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class WeightController extends Controller
 {
@@ -15,7 +16,7 @@ class WeightController extends Controller
      */
     public function index()
     {
-        $weights = Weight::all();
+        $weights = DB::table('weights')->orderBy('min')->get();
         return view('admin.weight.index', ['weights' => $weights]);
     }
 
@@ -47,6 +48,16 @@ class WeightController extends Controller
             'left_section' => 'required|numeric',
             'right_section' => 'required|numeric',
         ], $message);
+
+        # 查询是否数据已经存在
+        $weight = DB::table('weights')->whereRaw("min = $request->min and left_section = 2")
+            ->orWhereRaw("max = $request->max and right_section = 2")
+            ->get();
+        if (! $weight->isEmpty()){
+//            return view('admin.weight.create')
+            return back()->with(['message'=>'数据已经存在'])->withInput();
+        }
+
         # 保存`重量`记录
         $weight = new Weight();
         $weight->min = $request->min;

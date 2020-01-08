@@ -37,7 +37,7 @@ class PriceController extends Controller
     {
         $nations = Nation::all();
         $lines = Line::all();
-        $weights = Weight::all();
+        $weights = DB::table('weights')->orderBy('min')->get();
         return view('admin.price.create', [
             'nations' => $nations,
             'lines' => $lines,
