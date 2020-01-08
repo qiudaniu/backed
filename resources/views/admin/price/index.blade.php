@@ -26,7 +26,14 @@
                             <th scope="row"><a href="{{ url("admin/price/{$price->id}/edit") }}">{{ $key+1 }}</a></th>
                             <td>{{ $price->nation_name }}</td>
                             <td>{{ $price->line_name }}</td>
-                            <td>{{ $price->min }}~{{ $price->max }}</td>
+                            <td>@if($price->left_section == 1)[
+                                    @else \(
+                                    @endif
+                                {{ $price->min }}~{{ $price->max }}
+                                @if($price->right_section == 1)]
+                                    @else \)
+                                    @endif
+                            </td>
                             <td>{{ $price->price }}</td>
                             <td>{{ $price->created_at }}</td>
                             <td>{{ $price->updated_at }}</td>

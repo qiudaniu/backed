@@ -23,7 +23,7 @@ class PriceController extends Controller
             ->leftJoin('nations', 'prices.nation_id', '=', 'nations.id')
             ->leftJoin('lines', 'prices.line_id', '=', 'lines.id')
             ->leftJoin('weights', 'prices.weight_id', '=', 'weights.id')
-            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'prices.price', 'prices.created_at', 'prices.updated_at')
+            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.created_at', 'prices.updated_at')
             ->get();
         return view('admin.price.index', ['prices' => $prices]);
     }
@@ -96,7 +96,7 @@ class PriceController extends Controller
             ->leftJoin('nations', 'prices.nation_id', '=', 'nations.id')
             ->leftJoin('lines', 'prices.line_id', '=', 'lines.id')
             ->leftJoin('weights', 'prices.weight_id', '=', 'weights.id')
-            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'prices.price', 'prices.created_at', 'prices.updated_at')
+            ->select('prices.id', 'nations.name as nation_name', 'lines.name as line_name', 'weights.min', 'weights.max', 'weights.left_section', 'weights.right_section', 'prices.price', 'prices.created_at', 'prices.updated_at')
             ->where('prices.id', '=', $id)
             ->get();
         $nations = Nation::all();

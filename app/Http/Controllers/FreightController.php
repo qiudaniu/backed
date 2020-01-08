@@ -17,18 +17,12 @@ class FreightController extends Controller
         $message = [
             'addr.required' => '请输入国家',
             'weight.required' => '请输入快件重量',
-            'length.required' => '请输入快件长度',
-            'width.required' => '请输入快件宽度',
-            'height.required' => '请输入快件高度',
         ];
         # 设置验证
         $request->validate([
             'addr' => 'bail|required',
             'type' => 'required',
             'weight' => 'required',
-            'length' => 'required',
-            'width' => 'required',
-            'height' => 'required',
         ], $message);
         # 计算使用公斤 还是 体积
         /*$vol = $request->length * $request->width * $request->height;
@@ -41,10 +35,10 @@ class FreightController extends Controller
             ->get();
         # 数据库读出该公斤段的id
         $weight = DB::table('weights')
-            ->whereRaw("min<=$vol and max>$vol and left=1 and right=0")
-            ->orWhereRaw("min<$vol and max>$vol and left=0 and right=0")
-            ->orWhereRaw("min<=$vol and max>=$vol and left=1 and right=1")
-            ->orWhereRaw("min<$vol and max>=$vol and left=0 and right=1")
+            ->whereRaw("min<=$vol and max>$vol and left_section=1 and right_section=0")
+            ->orWhereRaw("min<$vol and max>$vol and left_section=0 and right_section=0")
+            ->orWhereRaw("min<=$vol and max>=$vol and left_section=1 and right_section=1")
+            ->orWhereRaw("min<$vol and max>=$vol and left_section=0 and right_section=1")
             ->get();
 
         if (!$nation->isEmpty() && !$weight->isEmpty()){

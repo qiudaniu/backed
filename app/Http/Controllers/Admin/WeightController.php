@@ -44,14 +44,16 @@ class WeightController extends Controller
         $request->validate([
             'min' => 'bail|required|numeric',
             'max' => 'required|numeric',
-            'left' => 'required|numeric',
-            'right' => 'required|numeric',
+            'left_section' => 'required|numeric',
+            'right_section' => 'required|numeric',
         ], $message);
-        # 保存`国家`记录
-        $nation = new Weight();
-        $nation->min = $request->min;
-        $nation->max = $request->max;
-        $return = $nation->save();
+        # 保存`重量`记录
+        $weight = new Weight();
+        $weight->min = $request->min;
+        $weight->max = $request->max;
+        $weight->left_section = $request->left_section;
+        $weight->right_section = $request->right_section;
+        $return = $weight->save();
         if ($return){
             return redirect('admin/weight')->with('message', '保存成功');
         }else{
@@ -95,8 +97,8 @@ class WeightController extends Controller
         $weight = Weight::find($id);
         if ($request->min) $weight->min = $request->min;
         if ($request->max) $weight->max = $request->max;
-        if ($request->left) $weight->max = $request->left;
-        if ($request->right) $weight->max = $request->right;
+        if ($request->left_section) $weight->max = $request->left_section;
+        if ($request->right_section) $weight->max = $request->right_section;
         $return = $weight->save();
         if ($return){
             return redirect('admin/weight');

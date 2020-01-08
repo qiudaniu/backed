@@ -14,8 +14,8 @@ class AddVotesToWeightsTable extends Migration
     public function up()
     {
         Schema::table('weights', function (Blueprint $table) {
-            $table->smallInteger('left')->after('max');
-            $table->smallInteger('right')->after('left');
+            $table->smallInteger('left_section')->after('max');
+            $table->smallInteger('right_section')->after('left_section');
         });
     }
 
@@ -27,8 +27,8 @@ class AddVotesToWeightsTable extends Migration
     public function down()
     {
         Schema::table('weights', function (Blueprint $table) {
-            $table->dropColumn('left');
-            $table->dropColumn('right');
+            $table->dropColumn('left_section');
+            $table->dropColumn('right_section');
         });
     }
 }
