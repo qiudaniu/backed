@@ -17,6 +17,7 @@
                         <th>线路</th>
                         <th>单价</th>
                         <th>总价</th>
+                        <th>注意事项</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -26,6 +27,12 @@
                             <td>{{ $price->line_name }}</td>
                             <td>{{ $price->price }}</td>
                             <td>{{ $price->price_all }}</td>
+                            <td><a href="javascript:void(0)" onclick="showRemark({{ $price->id }})"><img
+                                            src="{{ URL::asset('public/img/note.png') }}"
+                                            alt="注意事项" width="20" height="20" align="middle"></a></td>
+                        </tr>
+                        <tr id="remark_{{ $price->id }}" style="display: none; color: red;">
+                            <td colspan="5">{{ $price->remark }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -33,4 +40,18 @@
 
             </div>
         </div>
+    </div>
+    @endsection
+
+@section('javaScript')
+    <script>
+        function showRemark(id) {
+            display_remark = $("#remark_" + id).css('display');
+            if (display_remark === "none") {
+                $("#remark_" + id).css('display', "");
+            }else {
+                $("#remark_" + id).css('display', "none");
+            }
+        }
+    </script>
     @endsection

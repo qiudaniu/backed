@@ -35,10 +35,10 @@ class FreightController extends Controller
             ->get();
         # 数据库读出该公斤段的id
         $weight = DB::table('weights')
-            ->whereRaw("min<=$vol and max>$vol and left_section=1 and right_section=0")
-            ->orWhereRaw("min<$vol and max>$vol and left_section=0 and right_section=0")
-            ->orWhereRaw("min<=$vol and max>=$vol and left_section=1 and right_section=1")
-            ->orWhereRaw("min<$vol and max>=$vol and left_section=0 and right_section=1")
+            ->whereRaw("min<=$vol and max>$vol and left_section=2 and right_section=1")
+            ->orWhereRaw("min<$vol and max>$vol and left_section=1 and right_section=1")
+            ->orWhereRaw("min<=$vol and max>=$vol and left_section=2 and right_section=2")
+            ->orWhereRaw("min<$vol and max>=$vol and left_section=1 and right_section=2")
             ->get();
 
         if (!$nation->isEmpty() && !$weight->isEmpty()){
@@ -48,7 +48,7 @@ class FreightController extends Controller
                 ->leftJoin('lines', 'prices.line_id', '=', 'lines.id')
                 ->where('nation_id', '=', $nation[0]->id)
                 ->where('weight_id', '=', $weight[0]->id)
-                ->select('prices.id', 'lines.name as line_name', 'prices.price')
+                ->select('prices.id', 'lines.name as line_name', 'prices.price', 'prices.remark')
                 ->get();
         }else{
             return view('index', ['result'=>'查询无数据']);

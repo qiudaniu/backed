@@ -45,5 +45,6 @@
 <script src="{{ URL::asset('public/js/js.cookie.min.js') }}"></script>
 <script src="{{ URL::asset('public/js/charts-home.js') }}"></script>
 <script src="{{ URL::asset('public/js/front.js') }}"></script>
+@yield('javaScript')
 </body>
 </html>

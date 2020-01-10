@@ -40,16 +40,16 @@
                             <td>
                                 <a href="javascript:void(0)" onclick="showEditModal({{ $price->id }}, 'price')">修改</a>
                                 <a href="javascript:void(0)" onclick="showDeleteModal({{ $price->id }})">删除</a>
-                                <a href="javascript:void(0)" onclick="showRemark()">备注</a>
+                                <a href="javascript:void(0)" onclick="showRemark({{ $price->id }})">备注</a>
                             </td>
                         </tr>
-                        <tr id="remark" style="display: none">
+                        <tr id="remark_{{$price->id}}" style="display: none; color: red">
                             <td colspan="8">{{ $price->remark }}</td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
-
+            </div>
         </div>
     </div>
 @endsection
@@ -77,9 +77,13 @@
                     });
                 });
 
-                function showRemark(){
-                    alert(1);
-                    $("remark").css("display", "block");
+                function showRemark(id){
+                    display_remark = $("#remark_" + id).css("display");
+                    if (display_remark === "none"){
+                        $("#remark_" + id).css("display", "");
+                    }else{
+                        $("#remark_" + id).css("display", "none");
+                    }
                 }
             </script>
     @endsection
